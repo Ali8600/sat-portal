@@ -1,0 +1,12 @@
+<h1>Welcome Page</h1>
+
+<% if @profile_item.any? %>
+  <ul>
+    <% @profile_item.each do |course| %>
+      <li><%= course.title %></li>
+      <!-- Add more details as needed -->
+    <% end %>
+  </ul>
+<% else %>
+  <p>No courses found.</p>
+<% end %>
