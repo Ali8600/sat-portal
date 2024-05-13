@@ -16,7 +16,7 @@
     <% if current_user %>
       <%= button_to "Logout", destroy_user_session_path, method: :delete %>
       <%= link_to "Update", edit_user_registration_path %><br>
-<!--      <p>Username: <%#= current_user.Name %></p>-->
+      <p>Username: <%= current_user.name %></p>
 
 <!--      <p>Role: <%#= link_to current_user.Role.titleize, blogs_path %></p>-->
     <% else %>
