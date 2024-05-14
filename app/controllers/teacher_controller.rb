@@ -1,9 +1,8 @@
-class ProfileController < ApplicationController
+class TeacherController < ApplicationController
   before_action :authenticate_user!
 
   def show
-
-     @profile_item = Course.all
+     @teacher_item = Course.all
      # render template: "views/profile/show"
   end
   private

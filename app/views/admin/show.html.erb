@@ -1,0 +1,14 @@
+<h1>Welcome to Admin Portal</h1>
+
+<% if @user_item.any? %>
+  <ul>
+    <% @user_item.each do |user| %>
+      <li><%= user.name %></li>
+      <p><%= user.email %> </p>
+      <p><%= user.Role %> </p>
+      <!-- Add more details as needed -->
+    <% end %>
+  </ul>
+<% else %>
+  <p>No users found.</p>
+<% end %>
