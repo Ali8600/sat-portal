@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_14_075018) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_15_130843) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,12 +20,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_075018) do
     t.datetime "deadline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_assignments_on_course_id"
   end
 
   create_table "attendances", force: :cascade do |t|
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_attendances_on_course_id"
+    t.index ["user_id"], name: "index_attendances_on_user_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -33,6 +39,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_075018) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -50,6 +58,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_075018) do
     t.string "grade"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "assignments_id"
+    t.bigint "users_id"
+    t.index ["assignments_id"], name: "index_submissions_on_assignments_id"
+    t.index ["users_id"], name: "index_submissions_on_users_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,4 +78,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_075018) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "assignments", "courses"
+  add_foreign_key "attendances", "courses"
+  add_foreign_key "attendances", "users"
+  add_foreign_key "courses", "users"
+  add_foreign_key "submissions", "assignments", column: "assignments_id"
+  add_foreign_key "submissions", "users", column: "users_id"
 end

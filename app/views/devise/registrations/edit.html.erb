@@ -11,10 +11,13 @@
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
   </div>
-  <div class="field">
-    <%= f.label :Role %><br />
-    <%= f.select :Role, User.Roles.keys.map { |type| [type.titleize, type] }, {} %>
-  </div>
+  <% if current_user.admin? %>
+    <div class="field">
+      <%= f.label :Role %><br />
+      <%= f.select :Role, User.Roles.keys.map { |type| [type.titleize, type] }, {} %>
+    </div>
+  <%end %>
+
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

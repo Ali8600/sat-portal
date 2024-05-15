@@ -6,5 +6,6 @@ class Ability
   def initialize(user)
     # can :create, User if user.admin?
     # can :manage, :all if user.admin?
+    can :create, User unless user.admin?
   end
 end

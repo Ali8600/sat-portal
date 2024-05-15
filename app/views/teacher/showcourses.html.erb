@@ -1,0 +1,12 @@
+<h1>Welcome to Teacher Portal</h1>
+<p><%=link_to 'Create a Course', teacher_new_course_path  %></p>
+<% if @course.any? %>
+  <ul>
+    <% @course.each do |course| %>
+      <li><%= link_to course.title , teacher_edit_course_path(course.id)%></li>
+      <!-- Add more details as needed -->
+    <% end %>
+  </ul>
+<% else %>
+  <p>No course found.</p>
+<% end %>
