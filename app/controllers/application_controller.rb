@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     elsif user.teacher?
       teacher_index_path
     elsif user.student?
-      student_show_path
+      student_index_path
     else
       # Default redirection path if role is not defined
       super

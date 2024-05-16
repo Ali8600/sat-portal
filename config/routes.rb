@@ -16,13 +16,20 @@ Rails.application.routes.draw do
   #teacher-portal routes
   get  'teacher', to: 'teacher#index', as: 'teacher_index'
   get 'teacher/showcourses', to: 'teacher#showcourses', as: 'teacher_show_courses'
+  get 'teacher/showcourse/:id', to: 'teacher#showcourse', as: 'teacher_show_course'
   get 'teacher/newcourse', to: 'teacher#newcourse', as: 'teacher_new_course'
   post 'teacher/createcourse', to: 'teacher#createcourse', as: 'teacher_create_course'
   get 'teacher/course/:id/edit', to: 'teacher#editcourse', as: 'teacher_edit_course'
   patch 'teacher/updatecourse/:id', to: 'teacher#updatecourse', as: 'teacher_update_course'
+  #teacher_course_assignment routes
+  get 'teacher/course/:id/showassigments', to: 'teacher#showassignments', as: 'teacher_show_assigments'
+  get 'teacher/course/editassignment/:id', to: 'teacher#editassignment', as: 'teacher_edit_assignment'
+  patch 'teacher/course/updateassignment/:id', to: 'teacher#updateassignment', as: 'teacher_update_assignment'
+  get 'teacher/course/:id/newassignment', to: 'teacher#newassignment', as: 'teacher_new_assignment'
+  post 'teacher/course/:id/createassignment', to: 'teacher#createassignment', as: 'teacher_create_assignment'
 
   #student-portal routes
-  get 'student', to: 'student#show', as: 'student_show'
+  get 'student', to: 'student#index', as: 'student_index'
 
   #
   # # For admin

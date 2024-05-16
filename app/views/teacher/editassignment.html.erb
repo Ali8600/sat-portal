@@ -1,0 +1,18 @@
+<h2>Edit Assignment</h2>
+<%= form_for( @assignment, url: teacher_update_assignment_path(@assignment.id), remote: true, html: { method: :patch }) do |form| %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+  <%= form.label :deadline, style: "display: block" %>
+  <%= form.datetime_field :deadline, class: "datetime-picker" %>
+  <div>
+
+    <%= form.submit %>
+  </div>
+<% end %>

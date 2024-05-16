@@ -1,0 +1,8 @@
+<h2><%= @course.title %>'s Assignment Section'</h2>
+
+<p><%= link_to 'create new assignment', teacher_new_assignment_path %></p>
+<ul>
+  <% @assignments.each do |assignment| %>
+  <li> <%= link_to assignment.title, teacher_edit_assignment_path(assignment.id) %></li>
+  <% end %>
+</ul>

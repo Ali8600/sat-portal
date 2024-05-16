@@ -1,12 +1,7 @@
 class StudentController < ApplicationController
   before_action :authenticate_user!
-
-  def show
-     @student_item = Course.all
-     # render template: "views/profile/show"
+  def index
+     @courses = Course.all
   end
-  private
-  # def portfolio_params
-  #   params.require(:portfolio).permit(:title, :subtitle, :body)
-  # end
+
 end

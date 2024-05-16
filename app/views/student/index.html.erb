@@ -1,8 +1,8 @@
 <h1>Welcome to Student Portal</h1>
 
-<% if @student_item.any? %>
+<% if @courses.any? %>
   <ul>
-    <% @student_item.each do |course| %>
+    <% @courses.each do |course| %>
       <li><%=course.title %></li>
       <!-- Add more details as needed -->
     <% end %>
