@@ -11,28 +11,30 @@ class AdminController < ApplicationController
      # render template: "views/profile/show"
   end
 
-  def manageusers
+  def users
+    # Rails.logger.debug "Current user: #{current_user.inspect}"
     @user_item = User.all
+    # render json: @user_item.as_json
   end
 
-  def newuser
+  def new_user
     @user_item = User.new
   end
 
-  def createuser
+  def create_user
     @user_item = User.new(params[:user].permit(:email, :name, :Role, :password, :password_confirmation))
     if @user_item.save
-      redirect_to admin_manageusers_path, notice: 'User was successfully created.'
+      redirect_to admin_users_path, notice: 'User was successfully created.'
     end
   end
-  def manageuser
+  def edit_user
     @user_item = User.find(params[:id])
   end
 
-  def manageuserupdate
+  def update_user
     @user = User.find(params[:id])
     if @user.update(params[:user].permit(:email, :name, :Role))
-      redirect_to admin_manageusers_path, notice: 'User was successfully updated.'
+      redirect_to admin_users_path, notice: 'User was successfully updated.'
     end
   end
 

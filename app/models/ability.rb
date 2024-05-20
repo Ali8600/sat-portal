@@ -7,5 +7,7 @@ class Ability
     # can :create, User if user.admin?
     # can :manage, :all if user.admin?
     can :create, User unless user.admin?
+    # can :create, Course unless user.teacher?
+
   end
 end

@@ -1,0 +1,21 @@
+<h2><%=@course.title %></h2>
+<h3><%=@course.description %></h3>
+
+<p>-------------------------------</p>
+
+<h4>Assignments</h4>
+<% @assignments.each do |assignment| %>
+  <li><b>Title: </b><%= assignment.title %></li>
+  <h4>Description: </h4>
+  <%= assignment.description %>
+  <p>Deadline: <%= assignment.deadline %></p>
+  <%if assignment.submissions.exists?(user_id: current_user.id) %>
+    <p> Submitted (Grade: <%= assignment.submissions.find_by(user_id: current_user.id).grade|| 'I' %>
+      )</p>
+
+    <%else %>
+    <p><%= link_to 'Add Submission', student_add_assignment_submission_path(@course.id, assignment.id) %></p>
+
+  <% end %>
+
+<% end %>

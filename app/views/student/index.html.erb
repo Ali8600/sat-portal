@@ -3,8 +3,13 @@
 <% if @courses.any? %>
   <ul>
     <% @courses.each do |course| %>
-      <li><%=course.title %></li>
-      <!-- Add more details as needed -->
+      <li><%=  course.title %></li>
+      <% if current_user.enrollments.exists?(course_id: course.id) %>
+        Enrolled <p><%= link_to 'Open', student_course_path(course.id) %></p>
+      <% else %>
+        <%= link_to 'Enroll', student_enroll_path(course.id), method: :post %>
+      <% end %>
+      <p>-------------</p>
     <% end %>
   </ul>
 <% else %>

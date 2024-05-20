@@ -1,0 +1,12 @@
+<h2> Add Student</h2>
+<!--<h2><%#=@course.title %>'s Students'</h2>-->
+
+<% @students.each do |student| %>
+  <p> <%= student.name %></p>
+
+  <% if student.enrollments.exists?(course_id: @course.id) %>
+    Enrolled
+  <% else %>
+    <%= link_to 'Enroll', teacher_enroll_student_path(@course.id,student.id), method: :post %>
+  <% end %>
+<% end %>

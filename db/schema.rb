@@ -67,11 +67,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_16_073638) do
     t.string "grade"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "assignments_id"
-    t.bigint "users_id"
-    t.index ["assignments_id"], name: "index_submissions_on_assignments_id"
-    t.index ["users_id"], name: "index_submissions_on_users_id"
+    t.bigint "assignment_id" # Renamed from "assignments_id"
+    t.bigint "user_id" # Renamed from "users_id"
+    t.index ["assignment_id"], name: "index_submissions_on_assignment_id"
+    t.index ["user_id"], name: "index_submissions_on_user_id"
   end
+
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -93,6 +94,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_16_073638) do
   add_foreign_key "courses", "users"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
-  add_foreign_key "submissions", "assignments", column: "assignments_id"
-  add_foreign_key "submissions", "users", column: "users_id"
+  add_foreign_key "submissions", "assignments", column: "assignment_id"
+  add_foreign_key "submissions", "users", column: "user_id"
 end

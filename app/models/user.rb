@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   enum Role: %i[ admin teacher student ]
 
-  has_many :courses
-
+  has_many :courses, foreign_key: :user_id
+  has_many :enrollments
+  has_many :submissions
+  has_many :enrolled_courses, through: :enrollments, source: :course
 end
+

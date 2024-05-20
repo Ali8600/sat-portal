@@ -1,0 +1,7 @@
+<h2>Course Name:  <%= @course.title %></h2>
+<h3>Details: <%= @course.description %></h3>
+
+<p><%= link_to 'Edit Course Details', teacher_edit_course_path(@course.id) %></p>
+<p> <%= link_to 'Assignments', teacher_show_assigments_path(@course.id) %></p>
+<p> <%= link_to 'Students', teacher_course_students_path(@course.id) %></p>
+

@@ -1,0 +1,17 @@
+<h2><%= @assignment.title %>'s Submissions</h2>
+
+<% @submissions.each do |submission| %>
+  <p><%= submission.user.name %></p>
+  <p><%= submission.content %></p>
+
+  <%= form_with(model: submission, url: teacher_submission_feedback_path(@assignment.id, submission.id), remote: true, html: { method: :patch }) do |form| %>
+    <div>
+      <%= form.label :grade, style: "display: block" %>
+      <%= form.text_field :grade %>
+    </div>
+
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+<% end %>

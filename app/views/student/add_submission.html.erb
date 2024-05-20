@@ -1,0 +1,12 @@
+<h2>Add Submission to <%= @assignment.title %></h2>
+
+<%= form_for( @submission, url: student_create_submission_path(@course.id, @assignment.id), remote: true) do |form| %>
+
+  <div>
+    <%= form.label :content, style: "display: block" %>
+    <%= form.text_field :content %>
+  </div>
+
+    <%= form.submit %>
+
+<% end %>
